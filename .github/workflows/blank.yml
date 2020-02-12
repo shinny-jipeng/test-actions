@@ -18,9 +18,8 @@ jobs:
     - name: install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        vcpkg install boost-program-options
+        vcpkg install zlib
     - name: show installed
       run: |
-        c:\
         cd $env:VCPKG_INSTALLATION_ROOT/installed
         dir
