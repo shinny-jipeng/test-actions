@@ -1,4 +1,4 @@
-name: test cache vcpkg
+name: test cache vcpkg1
 
 on: [push]
 
