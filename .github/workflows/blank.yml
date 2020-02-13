@@ -1,4 +1,4 @@
-name: test cache vcpkg1
+name: test inno setup
 
 on: [push]
 
@@ -8,18 +8,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Cache
-      id: cache
-      uses: actions/cache@v1
-      with:
-        path: C:\vcpkg\installed
-        key: 123456
-    - name: install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        vcpkg install zlib
-    - name: show installed
-      run: |
-        cd $env:VCPKG_INSTALLATION_ROOT\installed
-        dir
+    #- uses: actions/checkout@v2
+    #- name: Cache
+      #id: cache
+      #uses: actions/cache@v1
+      #with:
+        #path: C:\vcpkg\installed
+        #key: 123456
+    #- name: install dependencies
+      #if: steps.cache.outputs.cache-hit != 'true'
+      #run: |
+        #vcpkg install zlib
+    #- name: show installed
+      #run: |
+        #cd $env:VCPKG_INSTALLATION_ROOT\installed
+        #dir
+      - name: show inno setup
+        run: |
+          cd C:
+          dir
+          
