@@ -27,4 +27,5 @@ jobs:
         run: |
           cd C:
           dir
-          echo $env:path
+          cd .\tools
+          dir
