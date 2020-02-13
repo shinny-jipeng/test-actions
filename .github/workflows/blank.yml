@@ -27,4 +27,4 @@ jobs:
         run: |
           cd C:
           dir
-          
+          whereis inno setup
