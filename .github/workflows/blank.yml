@@ -1,4 +1,4 @@
-name: test inno setup
+name: test psfunc
 
 on: [push]
 
@@ -25,8 +25,8 @@ jobs:
         #dir
       - name: show inno setup
         run: |
-          cd "C:\Program Files (x86)\Inno Setup 6"
-          dir
-          cd Languages
-          dir
-          #Get-ChildItem -Path . -Filter "inno setup" -Recurse
+          echo "::set-output name=ref::${{ github.ref }}.Substring(${{ github.ref }}.LastIndexOf('/') + 1)"
+          
+      - name: sshow
+        run: |
+          echo $env:ref
