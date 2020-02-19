@@ -26,7 +26,7 @@ jobs:
       - name: show inno setup
         id: ss
         run: |
-          [string]$tag = '${{ github.ref }}'.Substring('${{ github.ref }}'.LastIndexOf('/') + 1)
+          [string]$env:tag = '${{ github.ref }}'.Substring('${{ github.ref }}'.LastIndexOf('/') + 1)
           echo "::set-output name=ref::$env:tag"
           
       - name: sshow
