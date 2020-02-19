@@ -24,9 +24,10 @@ jobs:
         #cd $env:VCPKG_INSTALLATION_ROOT\installed
         #dir
       - name: show inno setup
+        id: ss
         run: |
           echo "::set-output name=ref::${{ github.ref }}.Substring(${{ github.ref }}.LastIndexOf('/') + 1)"
           
       - name: sshow
         run: |
-          echo $env:ref
+          echo ${{ steps.ss.outputs.ref }}
