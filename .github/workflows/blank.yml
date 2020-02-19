@@ -1,4 +1,4 @@
-name: test psfunc
+name: test innosetup cmd
 
 on: [push]
 
@@ -8,6 +8,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
     #- uses: actions/checkout@v2
     #- name: Cache
       #id: cache
@@ -32,7 +34,17 @@ jobs:
       - name: sshow
         run: |
           echo '${{ steps.ss.outputs.ref }}'
+       
+      - name: Make Setup Package
+        run: |
+          cd "C:\Program Files (x86)\Inno Setup 6"
+          ISCC.exe examples/example1.iss /O$env:GITHUB_WORKSPACE/../package
           
+      - name: ssshow
+        run: |
+          cd $env:GITHUB_WORKSPACE/../package
+          dir
+       
       - name: uploadRelease
         id: uploadRelease
         env:
