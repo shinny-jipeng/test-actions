@@ -26,8 +26,8 @@ jobs:
       - name: show inno setup
         id: ss
         run: |
-          echo "::set-output name=ref::${{ github.ref }}.Substring(${{ github.ref }}.LastIndexOf('/') + 1)"
+          echo "::set-output name=ref::'${{ github.ref }}'.Substring('${{ github.ref }}'.LastIndexOf('/') + 1)"
           
       - name: sshow
         run: |
-          echo ${{ steps.ss.outputs.ref }}
+          echo '${{ steps.ss.outputs.ref }}'
