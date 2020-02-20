@@ -1,4 +1,4 @@
-name: test innosetup cmd
+name: test env
 
 on: [push]
 
@@ -44,6 +44,7 @@ jobs:
         run: |
           cd $env:GITHUB_WORKSPACE/../package
           dir
+          echo ${{ env:GITHUB_WORKSPACE }}
        
       - name: uploadRelease
         id: uploadRelease
