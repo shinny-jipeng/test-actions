@@ -12,7 +12,6 @@ jobs:
         uses: actions/checkout@v2
       
       - name: zip
-        shell: cmd
         run: |
           7z a test.zip . -r
           dir .
