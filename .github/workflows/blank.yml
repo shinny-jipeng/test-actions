@@ -1,75 +1,23 @@
-name: test env
+name: check pull request
 
-on: [push]
+on: 
+  pull_request:
+    branches:
+      - '!master'
+    type: [opened, reopened]
 
 jobs:
   build:
-
     runs-on: windows-latest
-
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: zip
-        run: |
-          7z a test.zip . -r
-          dir .
-          
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: QPro
-          path: test.zip
-          
-      - name: Upload Artifacts2
-        uses: actions/upload-artifact@v2
-        with:
-          name: test
-          path: .
-    #- uses: actions/checkout@v2
-    #- name: Cache
-      #id: cache
-      #uses: actions/cache@v1
-      #with:
-        #path: C:\vcpkg\installed
-        #key: 123456
-    #- name: install dependencies
-      #if: steps.cache.outputs.cache-hit != 'true'
-      #run: |
-        #vcpkg install zlib
-    #- name: show installed
-      #run: |
-        #cd $env:VCPKG_INSTALLATION_ROOT\installed
-        #dir
-      - name: show inno setup
-        id: ss
-        run: |
-          [string]$env:tag = '${{ github.ref }}'.Substring('${{ github.ref }}'.LastIndexOf('/') + 1)
-          echo "::set-output name=ref::$env:tag"
-          
-      - name: sshow
-        run: |
-          echo '${{ steps.ss.outputs.ref }}'
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        lfs: true
        
-      - name: Make Setup Package
-        run: |
-          cd "C:\Program Files (x86)\Inno Setup 6"
-          ISCC.exe examples/example1.iss /O$env:GITHUB_WORKSPACE/../package
-          
-      - name: ssshow
-        run: |
-          cd $env:GITHUB_WORKSPACE/../package
-          dir
-          echo ${{ github.workspace }}
-       
-      - name: uploadRelease
-        id: uploadRelease
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: actions/upload-release-asset@v1.0.1
-        with:
-          upload_url: ${{ env.GITHUB_WORKSPACE }}
-          asset_path: ./${{ env.GITHUB_WORKSPACE }}.zip
-          asset_name: ${{ env.packageName }}.zip
-          asset_content_type: application/zip
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: test
+        path: .
