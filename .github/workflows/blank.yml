@@ -15,6 +15,18 @@ jobs:
         run: |
           7z a test.zip . -r
           dir .
+          
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: QPro
+          path: test.zip
+          
+      - name: Upload Artifacts2
+        uses: actions/upload-artifact@v2
+        with:
+          name: test
+          path: .
     #- uses: actions/checkout@v2
     #- name: Cache
       #id: cache
