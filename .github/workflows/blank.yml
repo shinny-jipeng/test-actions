@@ -2,8 +2,8 @@ name: check pull request
 
 on: 
   pull_request:
-    branches:
-      - '!master'
+    branches-ignore:
+      - 'master'
     type: [opened, reopened]
 
 jobs:
